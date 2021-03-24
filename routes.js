@@ -86,23 +86,29 @@ bot_router.get("/followerstweets",(req,res)=>{
     })
 })
 
-periodicTweeting()
-setInterval(periodicTweeting, 1000*60*30)
+periodicTweeting();
+setInterval(periodicTweeting, 1000*60*30);
 function periodicTweeting(){
 
     var randomValue= Math.floor(Math.random()*100)
-    var tweet={
+    const msg={
         status:"Hi tweeting from bot  every 30 min using random value: "+randomValue+"\n#nodejs"
     }
-    T.post('statuses/update', tweet, function(err, data, response) {
+    T.post('statuses/update', msg, function(err, data, response) {
         if(!err){
+            db.addBotTweet(msg).then((result)=>{
+                console.log("tweeted periodically added to db")
+        
+            })
 
             console.log("tweeted periodically")
         }
       })
 }
-bot_router.get("/periodicTweeting",()=>{
-    
+bot_router.get("/bot_tweets",(req,res)=>{
+    db.getBotTweets().then((result)=>{
+        res.send(result)
+    })
 })
 
 

@@ -1,6 +1,6 @@
 const { MongoClient, ObjectId } = require('mongodb')
 
-const connectionUrl = 'mongodb+srv://user1:Random123@cluster0.yvngq.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+const connectionUrl = 'mongodb+srv://user1:Random123@cluster0.yvngq.mongodb.net/twitterbot_db'
 const dbName = 'twitterbot_db'
 
 let db

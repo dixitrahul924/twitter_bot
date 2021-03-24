@@ -144,19 +144,19 @@ function periodicTweeting(){
     }
     T.post('statuses/update', msg, function(err, data, response) {
         if(!err){
-            // db.addBotTweet(msg).then((result)=>{
-            //     console.log("tweeted periodically added to db")
+            db.addBotTweet(msg).then((result)=>{
+                console.log("tweeted periodically added to db")
         
-            // })
+            })
 
             console.log("tweeted periodically")
         }
       })
 }
 bot_router.get("/bot_tweets",(req,res)=>{
-    // db.getBotTweets().then((result)=>{
-    //     res.send(result)
-    // })
+    db.getBotTweets().then((result)=>{
+        res.send(result)
+    })
 })
 
 

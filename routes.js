@@ -140,7 +140,7 @@ function periodicTweeting(){
 
     var randomValue= Math.floor(Math.random()*100)
     const msg={
-        status:"Hi tweeting from bot  every 30 min using random value: "+randomValue+"\n#nodejs"
+        status:"Hi tweeting from bot every 30 min using random value: "+randomValue+"\n#nodejs"
     }
     T.post('statuses/update', msg, function(err, data, response) {
         if(!err){

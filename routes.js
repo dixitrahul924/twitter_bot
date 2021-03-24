@@ -67,6 +67,22 @@ bot_router.get("/Unfollow",(req,res)=>{
       })
     res.status(200).redirect('/')
 })
+
+
+
+bot_router.get("/followers",(req,res)=>{
+    followers_name()
+db.getFollowers().then((result)=>{
+    
+    res.send(result)
+})
+})
+bot_router.get("/following",(req,res)=>{
+    following_name()
+    db.getFollowing().then((result)=>{
+        res.send(result)
+    })
+})
 bot_router.get("/followerstweets",(req,res)=>{
     param ={ q: 'myPAT_india', count: 10, result_type: 'recent' }
     T.get('followers/list', { screen_name: 'myPAT_india', count:10 },  function (err, data, response) {
@@ -85,7 +101,39 @@ bot_router.get("/followerstweets",(req,res)=>{
         res.status(200).render('recent_tweets.html',{result:result})
     })
 })
+function followers_name(){
+T.get('followers/list', { screen_name: 'myPAT_india', count:100 },  function (err, data, response) {
+    const followers=data.users;
+    // console.log(followers)
+    var array=[]
+    for(var i=0;i<followers.length;i++){
 
+        // console.log(i+1,followers[i].name,"----",followers[i].screen_name)
+        data={ screen_name: followers[i].screen_name }
+        array.push(data)
+    }
+    db.addFollowers(array).then((result)=>{
+        console.log("added")
+    })
+})
+}
+function following_name(){
+T.get('friends/list', { screen_name: 'myPAT_india', count:100 },  function (err, data, response) {
+    const following=data.users;
+    // console.log(following)
+    var array=[]
+    for(var i=0;i<following.length;i++){
+
+        // console.log(i+1,followers[i].name,"----",followers[i].screen_name)
+        data={ screen_name: following[i].screen_name }
+        array.push(data)
+    }
+    // console.log(array)
+    db.addFollowing(array).then((result)=>{
+        console.log("added")
+    })
+})
+}
 periodicTweeting();
 setInterval(periodicTweeting, 1000*60*30);
 function periodicTweeting(){

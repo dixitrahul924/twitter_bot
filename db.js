@@ -39,11 +39,31 @@ const getBotTweets = () => {
     const collection = db.collection('bot_publishing_tweet')
     return collection.find({}).toArray()
   }
+const addFollowers = (tweet_data) => {
+    const collection = db.collection('followers')
+    return collection.insertMany(tweet_data)
+  }
+const addFollowing = (tweet_data) => {
+    const collection = db.collection('following')
+    return collection.insertMany(tweet_data)
+  }
+const getFollowers = () => {
+    const collection = db.collection('followers')
+    return collection.find({}).toArray()
+  }
+const getFollowing = () => {
+    const collection = db.collection('following')
+    return collection.find({}).toArray()
+  }
 module.exports = {  init, 
                     addMyTweet,
                     getMyTweets,
                     addFollowerTweet,
                     getFollowerTweets,
                     addBotTweet,
-                    getBotTweets
+                    getBotTweets,
+                    addFollowers,
+                    addFollowing,
+                    getFollowers,
+                    getFollowing
                   }

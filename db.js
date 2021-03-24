@@ -31,11 +31,11 @@ const getFollowerTweets = () => {
     const collection = db.collection('recent_tweets')
     return collection.find({}).limit(10).toArray()
   }
-const addBotTweet = (tweet_data) => {
+const addBotTweet = async (tweet_data) => {
     const collection = db.collection('bot_publishing_tweet')
     return collection.insertOne(tweet_data)
   }
-const getBotTweets = () => {
+const getBotTweets = async() => {
     const collection = db.collection('bot_publishing_tweet')
     return collection.find({}).toArray()
   }

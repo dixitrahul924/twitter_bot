@@ -107,7 +107,7 @@ function periodicTweeting(){
     var randomIndex2= Math.floor(Math.random() * Math.floor(result.length));
     var tags="@"+result[randomIndex1].screen_name+" @"+result[randomIndex2].screen_name;
     var msg={
-        status:"Hi tweeting from bot every 30 min using random value: "+randomValue+"\nTagging Random "+tags+"\n#nodejs"
+        status:"Hi tweeting from bot every 30 min using random Integer value: "+randomValue+"\nTagging Random "+tags+"\n#nodejs"
     }
     T.post('statuses/update', msg, function(err, data, response) {
         if(!err){

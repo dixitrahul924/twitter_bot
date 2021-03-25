@@ -102,19 +102,24 @@ function following_name(){
 function periodicTweeting(){
 
     var randomValue= Math.floor(Math.random()*100)
-    const msg={
-        status:"Hi tweeting from bot every 30 min using random value: "+randomValue+"\n#nodejs"
+    db.getFollowing().then((result)=>{
+    var randomIndex1= Math.floor(Math.random() * Math.floor(result.length));
+    var randomIndex2= Math.floor(Math.random() * Math.floor(result.length));
+    var tags="@"+result[randomIndex1].screen_name+"@"+result[randomIndex2].screen_name;
+    var msg={
+        status:"Hi tweeting from bot every 30 min using random value: "+randomValue+"\nTagging Random "+tags+"\n#nodejs"
     }
     T.post('statuses/update', msg, function(err, data, response) {
         if(!err){
             db.addBotTweet(msg).then((result)=>{
                 console.log("tweeted periodically added to db")
         
-            })
+            }).catch(err => console.log(err))
 
             console.log("tweeted periodically")
         }
       })
+    }).catch(err => console.log( err ));
 }
 
 // periodicTweeting();

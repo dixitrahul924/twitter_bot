@@ -14,44 +14,44 @@ const init = () =>
 
 
 // 
-const addMyTweet = async (tweet_data) => {
+const addMyTweet =  (tweet_data) => {
   const collection = db.collection('myrecenttweets')
   return collection.insertOne(tweet_data)
 }
 
-const getMyTweets =async () => {
+const getMyTweets = () => {
   const collection = db.collection('myrecenttweets')
   return collection.find({}).limit(1).sort({$natural:-1}).toArray()
 }
-const addFollowerTweet =async (tweet_data) => {
+const addFollowerTweet = (tweet_data) => {
     const collection = db.collection('recent_tweets')
     return collection.insertOne(tweet_data)
   }
-const getFollowerTweets = async() => {
+const getFollowerTweets = () => {
     const collection = db.collection('recent_tweets')
     return collection.find({}).limit(10).toArray()
   }
-const addBotTweet = async (tweet_data) => {
+const addBotTweet =  (tweet_data) => {
     const collection = db.collection('bot_publishing_tweet')
     return collection.insertOne(tweet_data)
   }
-const getBotTweets = async() => {
+const getBotTweets = () => {
     const collection = db.collection('bot_publishing_tweet')
     return collection.find({}).toArray()
   }
-const addFollowers = async(tweet_data) => {
+const addFollowers = (tweet_data) => {
     const collection = db.collection('followers')
     return collection.insertMany(tweet_data)
   }
-const addFollowing = async(tweet_data) => {
+const addFollowing = (tweet_data) => {
     const collection = db.collection('following')
     return collection.insertMany(tweet_data)
   }
-const getFollowers = async() => {
+const getFollowers = () => {
     const collection = db.collection('followers')
     return collection.find({}).toArray()
   }
-const getFollowing = async() => {
+const getFollowing = () => {
     const collection = db.collection('following')
     return collection.find({}).toArray()
   }

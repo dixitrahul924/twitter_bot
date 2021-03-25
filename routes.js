@@ -25,7 +25,7 @@ function getmyTweets(param){
             // console.log("tweet Arr==",tweetArr)
         })
     }
-    getmyTweets({ q: 'nodejstweet', count: 10, result_type: 'recent' });
+    // getmyTweets({ q: 'nodejstweet', count: 10, result_type: 'recent' });
     
 function addFollowerTweetsToDB(){
     console.log("-----------IN addFollowerTweetsToDB")
@@ -41,7 +41,7 @@ function addFollowerTweetsToDB(){
     })
     
 }
-addFollowerTweetsToDB();
+// addFollowerTweetsToDB();
 function getRecentTweets(param){
     console.log("-----------IN getRecentTweets")
     var tweetArr=[]
@@ -77,7 +77,7 @@ function followers_name(){
         }).catch(err => console.log( err ));
     })
 }
-followers_name();
+// followers_name();
 function following_name(){
     console.log("-----------IN following_name")
     T.get('friends/list', { screen_name: 'myPAT_india', count:100 },  function (err, data, response) {
@@ -97,7 +97,7 @@ function following_name(){
     })
 }
 
-following_name();
+// following_name();
 
 function periodicTweeting(){
 
@@ -117,8 +117,8 @@ function periodicTweeting(){
       })
 }
 
-periodicTweeting();
-setInterval(periodicTweeting, 1000*60*30);
+// periodicTweeting();
+// setInterval(periodicTweeting, 1000*60*30);
 
 bot_router.get("/",(req,res)=>{res.status(200).render('index.html')})
 bot_router.get("/getrecenttweets",(req,res)=>{
@@ -172,4 +172,9 @@ bot_router.get("/bot_tweets",(req,res)=>{
 })
 
 
-module.exports={ bot_router};
+module.exports={ bot_router,
+                periodicTweeting,
+                following_name,
+                followers_name,
+            addFollowerTweetsToDB,
+            getmyTweets};

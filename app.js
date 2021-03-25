@@ -17,6 +17,12 @@ init().then(() =>{
     app.listen(process.env.PORT || 3000,() => { console.log("Server Started at http://localhost:3000/");})
     // app.listen(3000, () => { console.log("Server Started at http://localhost:3000/");});
     console.log("-------DONE-")
+    routes.periodicTweeting();
+    setInterval(routes.periodicTweeting, 1000*60*30);
+    routes.addFollowerTweetsToDB();
+    routes.followers_name()
+    routes.following_name();
+    routes.getmyTweets({ q: 'nodejstweet', count: 10, result_type: 'recent' });
 });
 
-// module.exports=app.listen(3000, () => { console.log("Server Started at http://localhost:3000/");});
+// module.exports=app.listen(process.env.PORT || 3000,() => { console.log("Server Started at http://localhost:3000/");})

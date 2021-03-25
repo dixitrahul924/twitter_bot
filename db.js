@@ -9,7 +9,7 @@ const init = () =>
   MongoClient.connect(connectionUrl, { useNewUrlParser: true }).then((client) => {
     db = client.db(dbName)
     console.log("Connection successful");
-  })
+  }).catch(err => console.log( err ));
 
 
 

@@ -5,10 +5,11 @@ var Twit = require('twit')
 var config =require("./config")
 const db = require("./db");
 var T = new Twit(config)
-param ={ q: 'myPAT_india', count: 2, result_type: 'recent' }
+// param ={ q: 'myPAT_india', count: 2, result_type: 'recent' }
 
 
 function getmyTweets(param){
+    console.log("-----------IN getmytweets")
     var tweetArr=[]
     T.get('search/tweets', param , function(err, data, res) {
         tweets=data.statuses
@@ -17,16 +18,17 @@ function getmyTweets(param){
             console.log("Recent Tweet of ",param.q,"----",i+1,tweets[i].text)
         }
         data={user : param.q,
-              tweets:tweetArr}
-        db.addMyTweet(data).then((result)=>{
-            console.log("Recent tweets saved in my db")
+            tweets:tweetArr}
+            db.addMyTweet(data).then((result)=>{
+                console.log("Recent tweets saved in my db")
+            })
+            // console.log("tweet Arr==",tweetArr)
         })
-        console.log("tweet Arr==",tweetArr)
-    })
-}
-getmyTweets({ q: 'nodejstweet', count: 10, result_type: 'recent' });
-
+    }
+    getmyTweets({ q: 'nodejstweet', count: 10, result_type: 'recent' });
+    
 function addFollowerTweetsToDB(){
+    console.log("-----------IN addFollowerTweetsToDB")
     // const param ={ q: 'myPAT_india', count: 10, result_type: 'recent' }
     T.get('followers/list', { screen_name: 'myPAT_india', count:10 },  function (err, data, response) {
         followers=data.users
@@ -41,6 +43,7 @@ function addFollowerTweetsToDB(){
 }
 addFollowerTweetsToDB();
 function getRecentTweets(param){
+    console.log("-----------IN getRecentTweets")
     var tweetArr=[]
     T.get('search/tweets', param , function(err, data, res) {
         tweets=data.statuses
@@ -58,6 +61,7 @@ function getRecentTweets(param){
 }
 
 function followers_name(){
+    console.log("-----------IN followers_name")
     T.get('followers/list', { screen_name: 'myPAT_india', count:100 },  function (err, data, response) {
         const followers=data.users;
         // console.log(followers)
@@ -75,6 +79,7 @@ function followers_name(){
 }
 followers_name();
 function following_name(){
+    console.log("-----------IN following_name")
     T.get('friends/list', { screen_name: 'myPAT_india', count:100 },  function (err, data, response) {
         const following=data.users;
         // console.log(following)

@@ -23,11 +23,11 @@ const getMyTweets =async () => {
   const collection = db.collection('myrecenttweets')
   return collection.find({}).limit(1).sort({$natural:-1}).toArray()
 }
-const addFollowerTweet = (tweet_data) => {
+const addFollowerTweet =async (tweet_data) => {
     const collection = db.collection('recent_tweets')
     return collection.insertOne(tweet_data)
   }
-const getFollowerTweets = () => {
+const getFollowerTweets = async() => {
     const collection = db.collection('recent_tweets')
     return collection.find({}).limit(10).toArray()
   }
@@ -39,19 +39,19 @@ const getBotTweets = async() => {
     const collection = db.collection('bot_publishing_tweet')
     return collection.find({}).toArray()
   }
-const addFollowers = (tweet_data) => {
+const addFollowers = async(tweet_data) => {
     const collection = db.collection('followers')
     return collection.insertMany(tweet_data)
   }
-const addFollowing = (tweet_data) => {
+const addFollowing = async(tweet_data) => {
     const collection = db.collection('following')
     return collection.insertMany(tweet_data)
   }
-const getFollowers = () => {
+const getFollowers = async() => {
     const collection = db.collection('followers')
     return collection.find({}).toArray()
   }
-const getFollowing = () => {
+const getFollowing = async() => {
     const collection = db.collection('following')
     return collection.find({}).toArray()
   }

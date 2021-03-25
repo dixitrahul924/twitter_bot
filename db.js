@@ -14,7 +14,7 @@ const init = () =>
 
 
 // 
-const addMyTweet = (tweet_data) => {
+const addMyTweet = async (tweet_data) => {
   const collection = db.collection('myrecenttweets')
   return collection.insertOne(tweet_data)
 }

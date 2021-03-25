@@ -21,7 +21,7 @@ function getmyTweets(param){
             tweets:tweetArr}
             db.addMyTweet(data).then((result)=>{
                 console.log("Recent tweets saved in my db")
-            })
+            }).catch(err => console.log( err ));
             // console.log("tweet Arr==",tweetArr)
         })
     }
@@ -55,7 +55,7 @@ function getRecentTweets(param){
               tweets:tweetArr}
         db.addFollowerTweet(data).then((result)=>{
             console.log("Recent tweets saved in db")
-        })
+        }).catch(err => console.log( err ));
         console.log("tweet Arr==",tweetArr)
     })
 }
@@ -74,7 +74,7 @@ function followers_name(){
         }
         db.addFollowers(array).then((result)=>{
             console.log("added")
-        })
+        }).catch(err => console.log( err ));
     })
 }
 followers_name();
@@ -93,7 +93,7 @@ function following_name(){
         // console.log(array)
         db.addFollowing(array).then((result)=>{
             console.log("added")
-        })
+        }).catch(err => console.log( err ));
     })
 }
 
@@ -128,7 +128,7 @@ bot_router.get("/getrecenttweets",(req,res)=>{
         
         console.log("arr -=-=-=-",result)
         res.status(200).render('recent_tweets.html',{result:result})
-    })
+    }).catch(err => console.log( err ));
 })
 bot_router.get("/follow",(req,res)=>{
     param ={ name: 'myPAT.in', screen_name: 'myPAT_india' }
@@ -150,12 +150,12 @@ bot_router.get("/followers",(req,res)=>{
     db.getFollowers().then((result)=>{
         
         res.send(result)
-    })
+    }).catch(err => console.log( err ));
 })
 bot_router.get("/following",(req,res)=>{
     db.getFollowing().then((result)=>{
         res.send(result)
-    })
+    }).catch(err => console.log( err ));
 })
 bot_router.get("/followerstweets",(req,res)=>{
 
@@ -163,12 +163,12 @@ bot_router.get("/followerstweets",(req,res)=>{
 
         // console.log("arr -=-=-=-",result)
         res.status(200).render('recent_tweets.html',{result:result})
-    })
+    }).catch(err => console.log( err ));
 })
 bot_router.get("/bot_tweets",(req,res)=>{
     db.getBotTweets().then((result)=>{
         res.send(result)
-    })
+    }).catch(err => console.log( err ));
 })
 
 

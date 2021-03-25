@@ -105,7 +105,7 @@ function periodicTweeting(){
     db.getFollowing().then((result)=>{
     var randomIndex1= Math.floor(Math.random() * Math.floor(result.length));
     var randomIndex2= Math.floor(Math.random() * Math.floor(result.length));
-    var tags="@"+result[randomIndex1].screen_name+"@"+result[randomIndex2].screen_name;
+    var tags="@"+result[randomIndex1].screen_name+" @"+result[randomIndex2].screen_name;
     var msg={
         status:"Hi tweeting from bot every 30 min using random value: "+randomValue+"\nTagging Random "+tags+"\n#nodejs"
     }

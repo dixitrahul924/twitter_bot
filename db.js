@@ -19,7 +19,7 @@ const addMyTweet = (tweet_data) => {
   return collection.insertOne(tweet_data)
 }
 
-const getMyTweets = () => {
+const getMyTweets =async () => {
   const collection = db.collection('myrecenttweets')
   return collection.find({}).limit(1).sort({$natural:-1}).toArray()
 }
